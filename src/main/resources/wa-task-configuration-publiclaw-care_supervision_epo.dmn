@@ -1114,7 +1114,8 @@
           <text>"title"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_040jt2c">
-          <text>taskAttributes.name + " (" + string(date(now())) + string(time(now())) + ")"</text>
+          <text>taskAttributes.name &amp; " (" &amp; date(now()) &amp; time(now()) &amp; ")"
+</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_03vf2mq">
           <text>false</text>
