@@ -1108,7 +1108,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0qd59ye">
-          <text>"viewAdditionalApplications", "reviewMessageLegalAdviser", "reviewMessageCTSC", "reviewMessageHearingCentreAdmin", "reviewMessageHearingJudge", "reviewMessageAllocatedJudge"</text>
+          <text>"viewAdditionalApplications"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_19vr5yu">
           <text>"title"</text>
