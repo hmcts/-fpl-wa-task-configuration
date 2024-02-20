@@ -536,7 +536,7 @@
           <text>"additionalProperties_roleAssignmentId"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1bhk0ws">
-          <text>taskAttributes.roleAssignmentId</text>
+          <text>taskAttributes.additionalProperties.roleAssignmentId</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0tdvep3">
           <text>true</text>
