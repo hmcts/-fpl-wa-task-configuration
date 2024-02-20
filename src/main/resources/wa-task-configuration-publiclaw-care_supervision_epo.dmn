@@ -1131,7 +1131,7 @@
           <text>"title"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_06zyyio">
-          <text>"Approve orders (" + substring(string(date(now())), 1, 10) + " " + substring(string(time(now())), 1, 5) + ")"</text>
+          <text>"Approve Orders (" + substring(string(date(now())), 1, 10) + " " + substring(string(time(now())), 1, 5) + ")"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1c3mzi6">
           <text>false</text>
