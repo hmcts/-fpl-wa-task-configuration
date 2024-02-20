@@ -1109,7 +1109,7 @@ else "roleAssignmentId"</text>
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0qd59ye">
-          <text>"viewAdditionalApplications","reviewMessageCTSC","reviewMessageLegalAdviser","reviewMessageHearingCentreAdmin","reviewMessageHearingJudge","reviewMessageAllocatedJudge"</text>
+          <text>"viewAdditionalApplications","reviewMessageCTSC","reviewMessageLegalAdviser","reviewMessageHearingCentreAdmin","reviewMessageHearingJudge","reviewMessageAllocatedJudge","approveOrders","reviewOrderCMO"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_19vr5yu">
           <text>"title"</text>
@@ -1118,40 +1118,6 @@ else "roleAssignmentId"</text>
           <text>taskAttributes.name + " (" + substring(string(date(now())), 1, 10) + " " + substring(string(time(now())), 1, 5) + ")"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_03vf2mq">
-          <text>false</text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_0ldohxd">
-        <inputEntry id="UnaryTests_07q0lpv">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_11oc6r0">
-          <text>"approveOrders"</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_17f5gyt">
-          <text>"title"</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_06zyyio">
-          <text>"Approve Orders (" + substring(string(date(now())), 1, 10) + " " + substring(string(time(now())), 1, 5) + ")"</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_1c3mzi6">
-          <text>false</text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_0f7eqxc">
-        <inputEntry id="UnaryTests_01bharr">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1a744qm">
-          <text>"reviewOrderCMO"</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_11b5tj8">
-          <text>"title"</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_1fr8jz7">
-          <text>"Review Order (" + substring(string(date(now())), 1, 10) + " " + substring(string(time(now())), 1, 5) + ")"</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0hw67v9">
           <text>false</text>
         </outputEntry>
       </rule>
