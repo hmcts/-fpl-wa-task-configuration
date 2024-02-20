@@ -1108,7 +1108,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0qd59ye">
-          <text>"viewAdditionalApplications","reviewMessageCTSC","reviewMessageLegalAdviser","reviewMessageHearingCentreAdmin","reviewMessageHearingJudge"</text>
+          <text>"viewAdditionalApplications","reviewMessageCTSC","reviewMessageLegalAdviser","reviewMessageHearingCentreAdmin","reviewMessageHearingJudge","reviewMessageAllocatedJudge"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_19vr5yu">
           <text>"title"</text>
@@ -1117,23 +1117,6 @@
           <text>taskAttributes.name + " (" + substring(string(date(now())), 1, 10) + " " + substring(string(time(now())), 1, 5) + ")"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_03vf2mq">
-          <text>false</text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_08bygmo">
-        <inputEntry id="UnaryTests_0pdjujm">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0ffpo19">
-          <text>"reviewMessageAllocatedJudge"</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_0xsnty2">
-          <text>"title"</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_11a9yix">
-          <text>"Review Message (Allocated Judge) (" + substring(string(date(now())), 1, 10) + " " + substring(string(time(now())), 1, 5) + ")"</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0bxz9lt">
           <text>false</text>
         </outputEntry>
       </rule>
