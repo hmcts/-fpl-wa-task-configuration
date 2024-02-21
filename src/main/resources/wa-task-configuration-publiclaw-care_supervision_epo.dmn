@@ -1115,7 +1115,7 @@ else "roleAssignmentId"</text>
           <text>"title"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_040jt2c">
-          <text>if (taskAttributes != null and taskAttributes.name != null) then taskAttributes.name + " (" + substring(string(date(now())), 1, 10) + " " + substring(string(time(now())), 1, 5) + ")" else ""</text>
+          <text>taskAttributes.name + " (" + substring(string(date(now())), 1, 10) + " " + substring(string(time(now())), 1, 5) + ")"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_03vf2mq">
           <text>false</text>
