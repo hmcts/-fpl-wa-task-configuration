@@ -536,7 +536,8 @@
           <text>"additionalProperties_roleAssignmentId"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1bhk0ws">
-          <text>taskAttributes.roleAssignmentId</text>
+          <text>if (taskAttributes != null and taskAttributes.roleAssignmentId != null) then taskAttributes.roleAssignmentId else if (taskAttributes != null and taskAttributes.additionalProperties != null and taskAttributes.additionalProperties.roleAssignmentId != null) then taskAttributes.additionalProperties.roleAssignmentId
+else "roleAssignmentId"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0tdvep3">
           <text>true</text>
@@ -1101,6 +1102,23 @@
         </outputEntry>
         <outputEntry id="LiteralExpression_0877p3e">
           <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1sumgf3">
+        <inputEntry id="UnaryTests_1oc8kos">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qd59ye">
+          <text>"viewAdditionalApplications","reviewMessageCTSC","reviewMessageLegalAdviser","reviewMessageHearingCentreAdmin","reviewMessageHearingJudge","reviewMessageAllocatedJudge","approveOrders","reviewOrderCMO"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_19vr5yu">
+          <text>"title"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_040jt2c">
+          <text>taskAttributes.name + " (" + substring(string(date(now())), 1, 10) + " " + substring(string(time(now())), 1, 5) + ")"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_03vf2mq">
+          <text>false</text>
         </outputEntry>
       </rule>
     </decisionTable>
