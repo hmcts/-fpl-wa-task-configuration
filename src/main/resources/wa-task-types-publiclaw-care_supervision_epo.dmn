@@ -174,17 +174,6 @@
           <text>"Review Standard Direction Order"</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_0a8a4a6">
-        <inputEntry id="UnaryTests_1g47373">
-          <text></text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_0ajt1df">
-          <text>"reviewOrderCMOUrgent"</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0xprp2u">
-          <text>"Review Order (Urgent)"</text>
-        </outputEntry>
-      </rule>
       <rule id="DecisionRule_146c7pm">
         <inputEntry id="UnaryTests_0t67jgj">
           <text></text>
