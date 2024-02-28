@@ -444,7 +444,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_08wb4e8">
-          <text>"viewAdditionalApplications","approveOrders","reviewOrderCMO","reviewOrderCMOUrgent","reviewStandardDirectionOrder"</text>
+          <text>"viewAdditionalApplications","approveOrders","reviewOrderCMO","reviewStandardDirectionOrder"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0uxu3q4">
           <text>"workType"</text>
@@ -582,7 +582,7 @@ else "roleAssignmentId"</text>
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0uuvjqh">
-          <text>"reviewMessageCTSC","reviewResponseCTSC","reviewUrgentApplication","reviewStandardApplication","reviewStandardDirectionOrder","reviewOrderCMO","reviewOrderCMOUrgent","reviewFailedPayment","reviewCorrespondence","checkPlacementApplication","chaseOutstandingOrder","reviewSpecificAccessRequestCTSC"</text>
+          <text>"reviewMessageCTSC","reviewResponseCTSC","reviewUrgentApplication","reviewStandardApplication","reviewStandardDirectionOrder","reviewOrderCMO","reviewFailedPayment","reviewCorrespondence","checkPlacementApplication","chaseOutstandingOrder","reviewSpecificAccessRequestCTSC"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_011ayls">
           <text>"roleCategory"</text>
@@ -736,7 +736,7 @@ else "roleAssignmentId"</text>
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_025w5p7">
-          <text>"reviewOrderCMO","reviewOrderCMOUrgent"</text>
+          <text>"reviewOrderCMO"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0eezo8k">
           <text>"description"</text>
@@ -1029,24 +1029,6 @@ else "roleAssignmentId"</text>
           <text>5000</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_02l2c2g">
-          <text>true</text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_084ms02">
-        <description>Always urgent</description>
-        <inputEntry id="UnaryTests_0auxqie">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0w8b5v7">
-          <text>"reviewOrderCMOUrgent"</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_102tyv4">
-          <text>"majorPriority"</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0b7oink">
-          <text>1000</text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_05txopu">
           <text>true</text>
         </outputEntry>
       </rule>
