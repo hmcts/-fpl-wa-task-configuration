@@ -43,7 +43,7 @@
       </input>
       <input id="InputClause_0l31fru" label="Courts taking part" camunda:inputVariable="court">
         <inputExpression id="LiteralExpression_0xyhjh8" typeRef="string" expressionLanguage="feel">
-          <text>if(additionalData != null and additionalData.Data != null and additionalData.Data.court != null) then additionalData.Data.court else null</text>
+          <text>if(additionalData != null and additionalData.Data != null and additionalData.Data.court != null and additionalData.Data.court.code != null) then additionalData.Data.court.code else null</text>
         </inputExpression>
         <inputValues id="UnaryTests_1tin0vl">
           <text>"151","123","203","139","130","242","303","131","115"</text>
