@@ -49,7 +49,8 @@ class CamundaTaskWaInitiationTest extends DmnDecisionTableBaseUnitTest {
             Arguments.of(
                 "messageJudgeOrLegalAdviser",
                 Map.of(
-                    "latestRoleSent", "JUDICIARY"
+                    "latestRoleSent", "JUDICIARY",
+                    "court", Map.of("code", "151")
                 ),
                 Map.of(
                     "taskId", "reviewMessageAllocatedJudge",
@@ -60,7 +61,8 @@ class CamundaTaskWaInitiationTest extends DmnDecisionTableBaseUnitTest {
             Arguments.of(
                 "replyToMessageJudgeOrLegalAdviser",
                 Map.of(
-                    "latestRoleSent", "JUDICIARY"
+                    "latestRoleSent", "JUDICIARY",
+                    "court", Map.of("code", "151")
                 ),
                 Map.of(
                     "taskId", "reviewResponseAllocatedJudge",
@@ -71,7 +73,8 @@ class CamundaTaskWaInitiationTest extends DmnDecisionTableBaseUnitTest {
             Arguments.of(
                 "messageJudgeOrLegalAdviser",
                 Map.of(
-                    "latestRoleSent", "HEARING_JUDGE"
+                    "latestRoleSent", "HEARING_JUDGE",
+                    "court", Map.of("code", "151")
                 ),
                 Map.of(
                     "taskId", "reviewMessageHearingJudge",
@@ -82,7 +85,8 @@ class CamundaTaskWaInitiationTest extends DmnDecisionTableBaseUnitTest {
             Arguments.of(
                 "messageJudgeOrLegalAdviser",
                 Map.of(
-                    "latestRoleSent", "LOCAL_COURT_ADMIN"
+                    "latestRoleSent", "LOCAL_COURT_ADMIN",
+                    "court", Map.of("code", "151")
                 ),
                 Map.of(
                     "taskId", "reviewMessageHearingCentreAdmin",
@@ -104,7 +108,8 @@ class CamundaTaskWaInitiationTest extends DmnDecisionTableBaseUnitTest {
             Arguments.of(
                 "messageJudgeOrLegalAdviser",
                 Map.of(
-                    "latestRoleSent", "OTHER"
+                    "latestRoleSent", "OTHER",
+                    "court", Map.of("code", "151")
                 ),
                 Map.of(
                     "taskId", "reviewMessageLegalAdviser",
