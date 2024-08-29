@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0yh1rk0" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.7.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_0yh1rk0" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.7.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
   <decision id="wa-task-configuration-publiclaw-care_supervision_epo" name="Task configuration DMN" camunda:historyTimeToLive="P30D">
+    <informationRequirement id="InformationRequirement_0qd6wv5">
+      <requiredDecision href="#Decision_0palmjd" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_10b2wp8">
+      <requiredDecision href="#Decision_0a1wkek" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1mqf6v1">
+      <requiredDecision href="#Decision_0dsatjz" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_03352ky">
+      <requiredDecision href="#Decision_0d4en47" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0c9npkj">
+      <requiredDecision href="#Decision_0noa378" />
+    </informationRequirement>
     <decisionTable id="DecisionTable_04h0po8" hitPolicy="RULE ORDER">
       <input id="Input_1" label="CCD Case Data" camunda:inputVariable="caseData">
         <inputExpression id="InputExpression_1" typeRef="string">
@@ -623,14 +638,44 @@ else "roleAssignmentId"</text>
           <text>"roleCategory"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_13wjipi">
-          <text>if ( matches(caseData.allocatedJudge.judgeEmailAddress, "@justice.gov.uk", "i")
-    or caseData.allocatedJudge.judgeTitle = "LEGAL_ADVISOR"
-) 
-then "LEGAL_OPERATIONS" 
-else "JUDICIAL"</text>
+          <text>ALLOCATED_JUDGE_ROLE_CATEGORY</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_106iqxi">
-          <text>true</text>
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_15kqbag">
+        <inputEntry id="UnaryTests_0qjv3x2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1msttiz">
+          <text>"viewAdditionalApplications"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0dsxj85">
+          <text>"title"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1ot2154">
+          <text>taskAttributes.name + " " + ALLOCATED_JUDGE_LABEL + " " + CONFIGURATION_TIME</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0ltmgrk">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1k9g7ca">
+        <inputEntry id="UnaryTests_1rgau92">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cyy81z">
+          <text>"reviewMessageAllocatedJudge","reviewResponseAllocatedJudge"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0hl6n7n">
+          <text>"title"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0uc47zq">
+          <text>replace(taskAttributes.name, "\(Allocated Judge\)", ALLOCATED_JUDGE_LABEL) + " " + CONFIGURATION_TIME</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0976xs4">
+          <text>false</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0bganw9">
@@ -644,40 +689,44 @@ else "JUDICIAL"</text>
           <text>"roleCategory"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0hvnkhr">
-          <text>if (
-    sort(
-        list: caseData.hearingDetails[
-            date and time(item.value.startDate) 
-            &lt;= date and time(substring(string(date(now())), 1, 10) + "T" + substring(string(time(now())), 1, 8))
-        ].value,
-        precedes: function(x, y) x.startDate &gt;= y.startDate
-    )[1].judgeAndLegalAdvisor.judgeTitle = "LEGAL_ADVISOR" 
-    or matches(
-        sort(
-            list: caseData.hearingDetails[
-                date and time(item.value.startDate) 
-                &lt;= date and time(substring(string(date(now())), 1, 10) + "T" + substring(string(time(now())), 1, 8))
-            ].value,
-            precedes: function(x, y) x.startDate &gt;= y.startDate
-        )[1].judgeAndLegalAdvisor.judgeEmailAddress, "@justice.gov.uk", "i")
-) 
-then "LEGAL_OPERATIONS" 
-else if (
-    (caseData.hearingDetails = null or count(caseData.hearingDetails) = 0 or sort(
-        list: caseData.hearingDetails[
-            date and time(item.value.startDate) 
-            &lt;= date and time(substring(string(date(now())), 1, 10) + "T" + substring(string(time(now())), 1, 8))
-        ].value,
-        precedes: function(x, y) x.startDate &gt;= y.startDate
-    )[1] = null) and    
-    (matches(caseData.allocatedJudge.judgeEmailAddress, "@justice.gov.uk", "i")
-    or caseData.allocatedJudge.judgeTitle = "LEGAL_ADVISOR")
-) 
-then "LEGAL_OPERATIONS" 
-else "JUDICIAL"</text>
+          <text>HEARING_JUDGE_ROLE_CATEGORY</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0zeaw9z">
-          <text>true</text>
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_19bk8q7">
+        <inputEntry id="UnaryTests_0oiaswz">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19j8ggr">
+          <text>"approveOrders"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_12o4e26">
+          <text>"title"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_16fdujv">
+          <text>taskAttributes.name + " " + HEARING_JUDGE_LABEL + " " + CONFIGURATION_TIME</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_002o3fe">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0xz5q3i">
+        <inputEntry id="UnaryTests_1srp3lz">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08spiu2">
+          <text>"reviewMessageHearingJudge","reviewResponseHearingJudge"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0fktfa4">
+          <text>"title"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1mg98eb">
+          <text>replace(taskAttributes.name, "\(Hearing Judge\)", HEARING_JUDGE_LABEL) + " " + CONFIGURATION_TIME</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_14fokti">
+          <text>false</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1mwn1hl">
@@ -1187,7 +1236,7 @@ else [5000])[1]</text>
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0qd59ye">
-          <text>"viewAdditionalApplications","reviewMessageCTSC","reviewMessageLegalAdviser","reviewMessageHearingCentreAdmin","reviewMessageHearingJudge","reviewMessageAllocatedJudge","approveOrders","reviewOrderCMO","reviewResponseAllocatedJudge","reviewResponseHearingJudge","reviewResponseHearingCentreAdmin","reviewResponseCTSC"</text>
+          <text>"reviewMessageCTSC","reviewResponseCTSC","reviewMessageLegalAdviser","reviewResponseLegalAdviser","reviewMessageHearingCentreAdmin","reviewOrderCMO","reviewResponseHearingCentreAdmin"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_19vr5yu">
           <text>"title"</text>
@@ -1201,10 +1250,131 @@ else [5000])[1]</text>
       </rule>
     </decisionTable>
   </decision>
+  <decision id="Decision_0palmjd" name="HEARING_JUDGE_ROLE_CATEGORY">
+    <variable id="InformationItem_1h7skk0" name="HEARING_JUDGE_ROLE_CATEGORY" typeRef="string" />
+    <literalExpression id="LiteralExpression_1ezthzx">
+      <text>if (
+    sort(
+        list: caseData.hearingDetails[
+            date and time(item.value.startDate) 
+            &lt;= date and time(substring(string(date(now())), 1, 10) + "T" + substring(string(time(now())), 1, 8))
+        ].value,
+        precedes: function(x, y) x.startDate &gt;= y.startDate
+    )[1].judgeAndLegalAdvisor.judgeTitle = "LEGAL_ADVISOR" 
+    or matches(
+        sort(
+            list: caseData.hearingDetails[
+                date and time(item.value.startDate) 
+                &lt;= date and time(substring(string(date(now())), 1, 10) + "T" + substring(string(time(now())), 1, 8))
+            ].value,
+            precedes: function(x, y) x.startDate &gt;= y.startDate
+        )[1].judgeAndLegalAdvisor.judgeEmailAddress, "@justice.gov.uk", "i")
+) 
+then "LEGAL_OPERATIONS" 
+else if (
+    (caseData.hearingDetails = null or count(caseData.hearingDetails) = 0 or sort(
+        list: caseData.hearingDetails[
+            date and time(item.value.startDate) 
+            &lt;= date and time(substring(string(date(now())), 1, 10) + "T" + substring(string(time(now())), 1, 8))
+        ].value,
+        precedes: function(x, y) x.startDate &gt;= y.startDate
+    )[1] = null) and    
+    (matches(caseData.allocatedJudge.judgeEmailAddress, "@justice.gov.uk", "i")
+    or caseData.allocatedJudge.judgeTitle = "LEGAL_ADVISOR")
+) 
+then "LEGAL_OPERATIONS" 
+else "JUDICIAL"</text>
+    </literalExpression>
+  </decision>
+  <decision id="Decision_0a1wkek" name="ALLOCATED_JUDGE_ROLE_CATEGORY">
+    <variable id="InformationItem_10mxw4q" name="ALLOCATED_JUDGE_ROLE_CATEGORY" typeRef="string" />
+    <literalExpression id="LiteralExpression_1ff8oiq">
+      <text>if (
+  caseData.allocatedJudge != null
+    and (matches(caseData.allocatedJudge.judgeEmailAddress, "@justice.gov.uk", "i") or caseData.allocatedJudge.judgeTitle = "LEGAL_ADVISOR")
+)
+then "LEGAL_OPERATIONS" 
+else "JUDICIAL"</text>
+    </literalExpression>
+  </decision>
+  <decision id="Decision_0dsatjz" name="CONFIGURATION_TIME">
+    <variable id="InformationItem_1obqu2m" name="CONFIGURATION_TIME" typeRef="string" />
+    <literalExpression id="LiteralExpression_1iooy6d">
+      <text>"(" + substring(string(date(now()+ duration("PT1H"))), 9, 2) + "/" + substring(string(date(now()+ duration("PT1H"))), 6, 2) + "/" + substring(string(date(now()+ duration("PT1H"))), 1, 4) + " " + substring(string(time(now()+ duration("PT1H"))), 1, 5) + ")"</text>
+    </literalExpression>
+  </decision>
+  <decision id="Decision_0noa378" name="ALLOCATED_JUDGE_LABEL">
+    <variable id="InformationItem_00avagx" name="ALLOCATED_JUDGE_LABEL" typeRef="string" />
+    <informationRequirement id="InformationRequirement_10144fa">
+      <requiredDecision href="#Decision_0a1wkek" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_1iplniw">
+      <text>if (ALLOCATED_JUDGE_ROLE_CATEGORY = "LEGAL_OPERATIONS") then "(Allocated Legal Adviser)" else "(Allocated Judge)"</text>
+    </literalExpression>
+  </decision>
+  <decision id="Decision_0d4en47" name="HEARING_JUDGE_LABEL">
+    <variable id="InformationItem_0vmojvu" name="HEARING_JUDGE_LABEL" typeRef="string" />
+    <informationRequirement id="InformationRequirement_1om8umx">
+      <requiredDecision href="#Decision_0palmjd" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_1db97gq">
+      <text>if (HEARING_JUDGE_ROLE_CATEGORY = "LEGAL_OPERATIONS") then "(Hearing Legal Adviser)" else "(Hearing Judge)"</text>
+    </literalExpression>
+  </decision>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
       <dmndi:DMNShape dmnElementRef="wa-task-configuration-publiclaw-care_supervision_epo">
+        <dc:Bounds height="80" width="180" x="520" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0e2bfk8" dmnElementRef="InformationRequirement_0qd6wv5">
+        <di:waypoint x="710" y="420" />
+        <di:waypoint x="628" y="200" />
+        <di:waypoint x="628" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1jt6cq6" dmnElementRef="Decision_0palmjd">
+        <dc:Bounds height="80" width="180" x="620" y="420" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0yaklvu" dmnElementRef="InformationRequirement_10b2wp8">
+        <di:waypoint x="520" y="420" />
+        <di:waypoint x="592" y="200" />
+        <di:waypoint x="592" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0ngas4b" dmnElementRef="Decision_0a1wkek">
+        <dc:Bounds height="80" width="180" x="430" y="420" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1ma0cs9" dmnElementRef="InformationRequirement_1mqf6v1">
+        <di:waypoint x="340" y="140" />
+        <di:waypoint x="500" y="140" />
+        <di:waypoint x="520" y="140" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_186s1n7" dmnElementRef="Decision_0dsatjz">
         <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1yyxgj7" dmnElementRef="InformationRequirement_03352ky">
+        <di:waypoint x="830" y="220" />
+        <di:waypoint x="664" y="200" />
+        <di:waypoint x="664" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0vsxoyo" dmnElementRef="InformationRequirement_1om8umx">
+        <di:waypoint x="710" y="420" />
+        <di:waypoint x="830" y="320" />
+        <di:waypoint x="830" y="300" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1c5gu9v" dmnElementRef="InformationRequirement_0c9npkj">
+        <di:waypoint x="410" y="220" />
+        <di:waypoint x="556" y="200" />
+        <di:waypoint x="556" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1lzk8e7" dmnElementRef="InformationRequirement_10144fa">
+        <di:waypoint x="520" y="420" />
+        <di:waypoint x="410" y="320" />
+        <di:waypoint x="410" y="300" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0e11qof" dmnElementRef="Decision_0noa378">
+        <dc:Bounds height="80" width="180" x="320" y="220" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1byzy0a" dmnElementRef="Decision_0d4en47">
+        <dc:Bounds height="80" width="180" x="740" y="220" />
       </dmndi:DMNShape>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>

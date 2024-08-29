@@ -1,12 +1,9 @@
 package uk.gov.hmcts.reform.fpl.dmn;
 
-import camundajar.impl.scala.math.BigDecimal;
-import camundajar.impl.scala.util.Either;
 import org.camunda.bpm.dmn.engine.DmnDecisionTableResult;
 import org.camunda.bpm.dmn.engine.impl.DmnDecisionTableImpl;
 import org.camunda.bpm.engine.variable.VariableMap;
 import org.camunda.bpm.engine.variable.impl.VariableMapImpl;
-import org.camunda.feel.FeelEngine;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,15 +19,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Stream;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.springframework.util.ObjectUtils.isEmpty;
 
 class CamundaTaskWaConfigurationTest extends DmnDecisionTableBaseUnitTest {
 
@@ -39,9 +33,9 @@ class CamundaTaskWaConfigurationTest extends DmnDecisionTableBaseUnitTest {
         CURRENT_DMN_DECISION_TABLE = DmnDecisionTable.WA_TASK_CONFIGURATION;
     }
 
-    private static LocalDateTime NOW = LocalDateTime.now();
+    private static final LocalDateTime NOW = LocalDateTime.now();
 
-    private static Map<String, Object> CASE_DATA = Map.of(
+    private static final Map<String, Object> CASE_DATA = Map.of(
         "caseName", "Test v Smith",
         "caseManagementLocation", Map.of(
             "region", "1",
@@ -93,30 +87,26 @@ class CamundaTaskWaConfigurationTest extends DmnDecisionTableBaseUnitTest {
     @ParameterizedTest
     @MethodSource("approveOrdersMajorPriorityScenarios")
     void testApproveOrdersMajorPriority(int expected, Map<String, Object> caseData) {
-        DmnDecisionTableImpl logic = (DmnDecisionTableImpl) decision.getDecisionLogic();
-        String feelExpression = getValueFromWaConfiguration(logic, "approveOrders", "majorPriority");
+        VariableMap inputVariables = new VariableMapImpl();
+        inputVariables.putValue("taskType", "approveOrders");
 
-        FeelEngine feelEngine = new FeelEngine.Builder().build();
+        Map<String, Object> caseDataComplete = new HashMap<>(CASE_DATA);
+        if (caseData != null) {
+            caseDataComplete.putAll(caseData);
+        }
+        inputVariables.putValue("caseData", caseDataComplete);
+        inputVariables.putValue("taskAttributes", Map.of("name", "Approve Orders"));
 
-        Either<FeelEngine.Failure, Object> result =
-            feelEngine.evalExpression(feelExpression, caseData == null ? toNullValueMap("caseData")
-                : Map.of("caseData", caseData));
-        assertEquals(BigDecimal.decimal(expected), result.toOption().get());
+        DmnDecisionTableResult dmnDecisionTableResult = evaluateDmnTable(inputVariables);
+        assertTrue(dmnDecisionTableResult.getResultList()
+                       .contains(getRowResult("majorPriority", String.valueOf(expected), true)));
     }
 
-    private static String encloseDoubleQuote(String name) {
-        return "\"" + name + "\"";
-    }
-
-    private static String getValueFromWaConfiguration(DmnDecisionTableImpl logic, String taskType, String name) {
-        return logic.getRules().stream()
-            .filter(d -> !isEmpty(d.getConditions().get(1).getExpression())
-                && d.getConditions().get(1).getExpression().contains(encloseDoubleQuote(taskType))
-                && encloseDoubleQuote(name).equals(d.getConclusions().get(0).getExpression()))
-            .findAny()
-            .orElseThrow(() -> new NoSuchElementException("Unable to locate " + taskType + " and " + name
-                                                              + " from the DMN table"))
-            .getConclusions().get(1).getExpression();
+    private static String getRowValue(DmnDecisionTableResult dmnDecisionTableResult, String rowName) {
+        return dmnDecisionTableResult.getResultList().stream().filter(el -> el.get("name").equals(rowName))
+            .findFirst()
+            .map(el -> (String) el.get("value"))
+            .orElseThrow();
     }
 
     private static Stream<Arguments> allocatedJudgeScenarios() {
@@ -152,43 +142,81 @@ class CamundaTaskWaConfigurationTest extends DmnDecisionTableBaseUnitTest {
 
     @ParameterizedTest
     @MethodSource("allocatedJudgeScenarios")
-    void testViewAdditionalApplicationRoleCategory(String expected, Map<String, Object> caseData) {
-        DmnDecisionTableImpl logic = (DmnDecisionTableImpl) decision.getDecisionLogic();
-        String feelExpression = getValueFromWaConfiguration(logic, "viewAdditionalApplications", "roleCategory");
+    void testViewAdditionalApplications(String expected, Map<String, Object> caseData) {
+        VariableMap inputVariables = new VariableMapImpl();
+        inputVariables.putValue("taskType", "viewAdditionalApplications");
 
-        FeelEngine feelEngine = new FeelEngine.Builder().build();
+        Map<String, Object> caseDataComplete = new HashMap<>(CASE_DATA);
+        if (caseData != null) {
+            caseDataComplete.putAll(caseData);
+        }
+        inputVariables.putValue("caseData", caseDataComplete);
+        inputVariables.putValue("taskAttributes", Map.of("name", "View Additional Applications"));
 
-        Either<FeelEngine.Failure, Object> result =
-            feelEngine.evalExpression(feelExpression, Map.of("caseData", caseData));
-        assertEquals(expected, result.toOption().get());
+        DmnDecisionTableResult dmnDecisionTableResult = evaluateDmnTable(inputVariables);
+        assertTrue(dmnDecisionTableResult.getResultList()
+                       .contains(getRowResult("roleCategory", expected, false)));
+
+        String title = getRowValue(dmnDecisionTableResult, "title");
+        assertTrue(title.startsWith(String.format(
+            "View Additional Applications (%s)",
+            expected.equals("LEGAL_OPERATIONS")
+                ? "Allocated Legal Adviser"
+                : "Allocated Judge"
+        )));
     }
 
     @ParameterizedTest
     @MethodSource("allocatedJudgeScenarios")
-    void testMessageResponseAllocatedJudgeRoleCategory(String expected, Map<String, Object> caseData) {
-        DmnDecisionTableImpl logic = (DmnDecisionTableImpl) decision.getDecisionLogic();
-        String feelExpression = getValueFromWaConfiguration(logic, "reviewMessageAllocatedJudge", "roleCategory");
+    void testReviewMessageAllocatedJudgeProperties(String expected, Map<String, Object> caseData) {
+        VariableMap inputVariables = new VariableMapImpl();
+        inputVariables.putValue("taskType", "reviewMessageAllocatedJudge");
 
-        FeelEngine feelEngine = new FeelEngine.Builder().build();
+        Map<String, Object> caseDataComplete = new HashMap<>(CASE_DATA);
+        if (caseData != null) {
+            caseDataComplete.putAll(caseData);
+        }
+        inputVariables.putValue("caseData", caseDataComplete);
+        inputVariables.putValue("taskAttributes", Map.of("name", "Review Message (Allocated Judge)"));
 
-        Either<FeelEngine.Failure, Object> result =
-            feelEngine.evalExpression(feelExpression, Map.of("caseData", caseData));
-        assertEquals(expected, result.toOption().get());
+        DmnDecisionTableResult dmnDecisionTableResult = evaluateDmnTable(inputVariables);
+        assertTrue(dmnDecisionTableResult.getResultList()
+                       .contains(getRowResult("roleCategory", expected, false)));
+
+        String title = getRowValue(dmnDecisionTableResult, "title");
+        assertTrue(title.startsWith(String.format(
+            "Review Message (%s)",
+            expected.equals("LEGAL_OPERATIONS")
+                ? "Allocated Legal Adviser"
+                : "Allocated Judge"
+        )));
     }
 
     @ParameterizedTest
     @MethodSource("hearingJudgeScenarios")
-    void testMessageResponseHearingJudgeRoleCategory(String expected, Map<String, Object> caseData) {
-        DmnDecisionTableImpl logic = (DmnDecisionTableImpl) decision.getDecisionLogic();
-        String feelExpression = getValueFromWaConfiguration(logic, "reviewMessageHearingJudge", "roleCategory");
+    void testReviewMessageHearingJudgeProperties(String expected, Map<String, Object> caseData) {
+        VariableMap inputVariables = new VariableMapImpl();
+        inputVariables.putValue("taskType", "reviewMessageHearingJudge");
 
-        FeelEngine feelEngine = new FeelEngine.Builder().build();
+        Map<String, Object> caseDataComplete = new HashMap<>(CASE_DATA);
+        if (caseData != null) {
+            caseDataComplete.putAll(caseData);
+        }
+        inputVariables.putValue("caseData", caseDataComplete);
+        inputVariables.putValue("taskAttributes", Map.of("name", "Review Message (Hearing Judge)"));
 
-        Either<FeelEngine.Failure, Object> result =
-            feelEngine.evalExpression(feelExpression, Map.of("caseData", caseData));
-        assertEquals(expected, result.toOption().get());
+        DmnDecisionTableResult dmnDecisionTableResult = evaluateDmnTable(inputVariables);
+        assertTrue(dmnDecisionTableResult.getResultList()
+                       .contains(getRowResult("roleCategory", expected, false)));
+
+        String title = getRowValue(dmnDecisionTableResult, "title");
+        assertTrue(title.startsWith(String.format(
+            "Review Message (%s)",
+            expected.equals("LEGAL_OPERATIONS")
+                ? "Hearing Legal Adviser"
+                : "Hearing Judge"
+        )));
     }
-
 
     private static String formatString(Date date) {
         return new SimpleDateFormat("yyyy-MM-dd").format(date) + "T"
@@ -579,24 +607,11 @@ class CamundaTaskWaConfigurationTest extends DmnDecisionTableBaseUnitTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("hearingJudgeScenarios")
-    void testApproveOrdersRoleCategory(String expected, Map<String, Object> caseData) {
-        DmnDecisionTableImpl logic = (DmnDecisionTableImpl) decision.getDecisionLogic();
-        String feelExpression = getValueFromWaConfiguration(logic, "approveOrders", "roleCategory");
-
-        FeelEngine feelEngine = new FeelEngine.Builder().build();
-
-        Either<FeelEngine.Failure, Object> result =
-            feelEngine.evalExpression(feelExpression, Map.of("caseData", caseData));
-        assertEquals(expected, result.toOption().get());
-    }
-
     @Test
     void shouldHaveCorrectNumberOfRules() {
         // The purpose of this test is to prevent adding new rows without being tested
         DmnDecisionTableImpl logic = (DmnDecisionTableImpl) decision.getDecisionLogic();
-        assertThat(logic.getRules().size(), is(65));
+        assertThat(logic.getRules().size(), is(69));
     }
 
     private static List<Map<String, Object>> getBaseValues() {
