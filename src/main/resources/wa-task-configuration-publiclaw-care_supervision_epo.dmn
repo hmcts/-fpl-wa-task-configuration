@@ -691,7 +691,7 @@ else "JUDICIAL"</text>
           <text>"description"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_116vhpk">
-          <text>"[Approve orders](/case/PUBLICLAW/CARE_SUPERVISION_EPO/${[CASE_REFERENCE]}/trigger/reviewCMO)"</text>
+          <text>"[Approve orders](/cases/case-details/${[CASE_REFERENCE]}/trigger/reviewCMO)"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_04n1rtd">
           <text>true</text>
@@ -708,7 +708,7 @@ else "JUDICIAL"</text>
           <text>"description"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0uafmcd">
-          <text>"[Reply to message](/case/PUBLICLAW/CARE_SUPERVISION_EPO/${[CASE_REFERENCE]}/trigger/replyToMessageJudgeOrLegalAdviser)"</text>
+          <text>"[Reply to message](/cases/case-details/${[CASE_REFERENCE]}/trigger/replyToMessageJudgeOrLegalAdviser)"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0luiefw">
           <text>true</text>
@@ -725,7 +725,7 @@ else "JUDICIAL"</text>
           <text>"description"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_184qrc2">
-          <text>"[Review additional applications](/case/PUBLICLAW/CARE_SUPERVISION_EPO/${[CASE_REFERENCE]}/trigger/reviewAdditionalApplication)"</text>
+          <text>"[Review additional applications](/cases/case-details/${[CASE_REFERENCE]}/trigger/reviewAdditionalApplication)"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1kzut7e">
           <text>true</text>
@@ -742,7 +742,7 @@ else "JUDICIAL"</text>
           <text>"description"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1tk1bqp">
-          <text>"First [Add case number](/case/PUBLICLAW/CARE_SUPERVISION_EPO/${[CASE_REFERENCE]}/trigger/addFamilyManCaseNumber) then [Send to gatekeeper](/case/PUBLICLAW/CARE_SUPERVISION_EPO/${[CASE_REFERENCE]}/trigger/sendToGatekeeper) or [Return application](/case/PUBLICLAW/CARE_SUPERVISION_EPO/${[CASE_REFERENCE]}/trigger/returnApplication)"</text>
+          <text>"First [Add case number](/cases/case-details/${[CASE_REFERENCE]}/trigger/addFamilyManCaseNumber) then [Send to gatekeeper](/cases/case-details/${[CASE_REFERENCE]}/trigger/sendToGatekeeper) or [Return application](/cases/case-details/${[CASE_REFERENCE]}/trigger/returnApplication)"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1rpkgu8">
           <text>true</text>
@@ -759,7 +759,7 @@ else "JUDICIAL"</text>
           <text>"description"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0ipsp8q">
-          <text>"First [Add case number](/case/PUBLICLAW/CARE_SUPERVISION_EPO/${[CASE_REFERENCE]}/trigger/addFamilyManCaseNumber) then [Send to gatekeeper](/case/PUBLICLAW/CARE_SUPERVISION_EPO/${[CASE_REFERENCE]}/trigger/sendToGatekeeper) or [Return application](/case/PUBLICLAW/CARE_SUPERVISION_EPO/${[CASE_REFERENCE]}/trigger/returnApplication)"</text>
+          <text>"First [Add case number](/cases/case-details/${[CASE_REFERENCE]}/trigger/addFamilyManCaseNumber) then [Send to gatekeeper](/cases/case-details/${[CASE_REFERENCE]}/trigger/sendToGatekeeper) or [Return application](/cases/case-details/${[CASE_REFERENCE]}/trigger/returnApplication)"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_10lviq5">
           <text>true</text>
@@ -776,7 +776,7 @@ else "JUDICIAL"</text>
           <text>"description"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1oe1dt5">
-          <text>"[Send order reminder](/case/PUBLICLAW/CARE_SUPERVISION_EPO/${[CASE_REFERENCE]}/trigger/sendOrderReminder)"</text>
+          <text>"[Send order reminder](/cases/case-details/${[CASE_REFERENCE]}/trigger/sendOrderReminder)"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0el8m85">
           <text>true</text>
