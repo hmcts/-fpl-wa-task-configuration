@@ -56,7 +56,7 @@
           <text>"judge"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0fxbixa">
-          <text>"Complete,Own,Assign,Claim,Unassign,Read"</text>
+          <text>"Own,Assign,Claim,Unassign,Read"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0h6utj4">
           <text>"JUDICIAL"</text>
@@ -82,7 +82,7 @@
           <text>"tribunal-caseworker"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_11cz9va">
-          <text>"Complete,Own,Assign,Claim,Unassign,Read"</text>
+          <text>"Own,Assign,Claim,Unassign,Read"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0ws78nd">
           <text>"LEGAL_OPERATIONS"</text>
@@ -109,7 +109,7 @@
           <text>"allocated-judge"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0e0hb3v">
-          <text>"Complete,Own,Assign,Claim,Unassign,Read"</text>
+          <text>"Own,Assign,Claim,Unassign,Read"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1pso43x">
           <text>"JUDICIAL"</text>
@@ -136,7 +136,7 @@
           <text>"allocated-legal-adviser"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0bbiov6">
-          <text>"Complete,Own,Assign,Claim,Unassign,Read"</text>
+          <text>"Own,Assign,Claim,Unassign,Read"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_15n2gsm">
           <text>"LEGAL_OPERATIONS"</text>
@@ -163,7 +163,7 @@
           <text>"hearing-judge"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1k1ndgh">
-          <text>"Complete,Own,Assign,Claim,Unassign,Read"</text>
+          <text>"Own,Assign,Claim,Unassign,Read"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0uoeh3w">
           <text>"JUDICIAL"</text>
@@ -190,7 +190,7 @@
           <text>"hearing-legal-adviser"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1yv1c8w">
-          <text>"Complete,Own,Assign,Claim,Unassign,Read"</text>
+          <text>"Own,Assign,Claim,Unassign,Read"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_13b7zoz">
           <text>"LEGAL_OPERATIONS"</text>
@@ -217,7 +217,7 @@
           <text>"judge"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0ug8odu">
-          <text>"Complete,Own,Assign,Claim,Unassign,Read"</text>
+          <text>"Own,Assign,Claim,Unassign,Read"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0bo9pox">
           <text>"JUDICIAL"</text>
@@ -243,7 +243,7 @@
           <text>"tribunal-caseworker"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0u1iyf7">
-          <text>"Complete,Own,Assign,Claim,Unassign,Read"</text>
+          <text>"Own,Assign,Claim,Unassign,Read"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_13rrzfa">
           <text>"LEGAL_OPERATIONS"</text>
@@ -270,7 +270,7 @@
           <text>"allocated-judge"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1ql9lpl">
-          <text>"Complete,Own,Assign,Claim,Unassign,Read"</text>
+          <text>"Own,Assign,Claim,Unassign,Read"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0lszq4g">
           <text>"JUDICIAL"</text>
@@ -297,7 +297,7 @@
           <text>"allocated-legal-adviser"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1ht5y1p">
-          <text>"Complete,Own,Assign,Claim,Unassign,Read"</text>
+          <text>"Own,Assign,Claim,Unassign,Read"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_128edem">
           <text>"LEGAL_OPERATIONS"</text>
@@ -324,7 +324,7 @@
           <text>"judge"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1ka10px">
-          <text>"Complete,Own,Assign,Claim,Unassign,Read"</text>
+          <text>"Own,Assign,Claim,Unassign,Read"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0azqxtu">
           <text>"JUDICIAL"</text>
@@ -350,7 +350,7 @@
           <text>"tribunal-caseworker"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1imwepp">
-          <text>"Complete,Own,Assign,Claim,Unassign,Read"</text>
+          <text>"Own,Assign,Claim,Unassign,Read"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_08v26jq">
           <text>"LEGAL_OPERATIONS"</text>
@@ -377,7 +377,7 @@
           <text>"hearing-judge"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0mto07b">
-          <text>"Complete,Own,Assign,Claim,Unassign,Read"</text>
+          <text>"Own,Assign,Claim,Unassign,Read"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_06c4om0">
           <text>"JUDICIAL"</text>
@@ -404,7 +404,7 @@
           <text>"hearing-legal-adviser"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0d0thc1">
-          <text>"Complete,Own,Assign,Claim,Unassign,Read"</text>
+          <text>"Own,Assign,Claim,Unassign,Read"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1erm8yd">
           <text>"LEGAL_OPERATIONS"</text>
@@ -430,7 +430,7 @@
           <text>"hearing-centre-admin"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0hiioi6">
-          <text>"Complete,Own,Assign,Claim,Unassign,Read"</text>
+          <text>"Own,Assign,Claim,Unassign,Read"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1br4qdl">
           <text>"ADMIN"</text>
