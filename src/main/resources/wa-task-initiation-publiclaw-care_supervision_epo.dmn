@@ -22,10 +22,10 @@
       </input>
       <input id="InputClause_01shufq" label="Hearing Timeframe" camunda:inputVariable="timeFrame">
         <inputExpression id="LiteralExpression_13k9gdq" typeRef="string">
-          <text>if(additionalData != null and additionalData.Data != null and additionalData.Data.hearing != null and additionalData.Data.hearing.timeFrame != null) then additionalData.Data.hearing.timeFrame else "Other"</text>
+          <text>if(additionalData != null and additionalData.Data != null and additionalData.Data.hearing != null and additionalData.Data.hearing.hearingUrgencyType != null) then additionalData.Data.hearing.hearingUrgencyType else if(additionalData != null and additionalData.Data != null and additionalData.Data.hearing != null and additionalData.Data.hearing.timeFrame != null) then additionalData.Data.hearing.timeFrame else "Other"</text>
         </inputExpression>
         <inputValues id="UnaryTests_1e9vfmg">
-          <text>"Within 5 days","Within 2 days","Same day"</text>
+          <text>"Within 5 days","Within 2 days","Same day","Urgent (not same day)","Standard (between days 12-18)"</text>
         </inputValues>
       </input>
       <input id="InputClause_15h2ykf" label="Last Created WA Task" biodi:width="192" camunda:inputVariable="lastCreatedWATask">
