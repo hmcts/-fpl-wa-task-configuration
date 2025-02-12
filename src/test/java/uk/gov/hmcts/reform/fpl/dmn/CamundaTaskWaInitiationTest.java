@@ -135,7 +135,6 @@ class CamundaTaskWaInitiationTest extends DmnDecisionTableBaseUnitTest {
     void shouldHaveCorrectNumberOfRules() {
         // The purpose of this test is to prevent adding new rows without being tested
         DmnDecisionTableImpl logic = (DmnDecisionTableImpl) decision.getDecisionLogic();
-        // todo - check this after evaluation period
-        assertThat(logic.getRules().size(), is(11));
+        assertThat(logic.getRules().size(), is(25));
     }
 }
