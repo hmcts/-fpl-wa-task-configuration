@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1rc89mk" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.7.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1rc89mk" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.26.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
   <decision id="wa-task-permissions-publiclaw-care_supervision_epo" name="Permissions DMN" camunda:historyTimeToLive="P30D">
     <decisionTable id="DecisionTable_0vv02p8" hitPolicy="RULE ORDER">
       <input id="Input_1" label="Task type" biodi:width="313" camunda:inputVariable="taskType">
@@ -679,6 +679,58 @@
           <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1cikucp">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_122nkk6">
+        <inputEntry id="UnaryTests_1544r2e">
+          <text>"queryManagementRespondToQuery"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ryio1z">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0aj1cu6">
+          <text>"ctsc"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_075dbc8">
+          <text>"Complete,Own,Claim,Unclaim,UnassignClaim,Read"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_17b6m2l">
+          <text>"CTSC"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_02n4a18">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1i6yuik">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1nykgso">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0t1vs8s">
+        <inputEntry id="UnaryTests_1y23h7k">
+          <text>"queryManagementRespondToQuery"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_17ivynh">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1pp2w86">
+          <text>"hearing-centre-admin"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1s9cp80">
+          <text>"Complete,Own,Claim,Unclaim,UnassignClaim,Read"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0kquoq9">
+          <text>"ADMIN"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0acg0kl">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_17om02j">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_05xnvr4">
           <text>false</text>
         </outputEntry>
       </rule>

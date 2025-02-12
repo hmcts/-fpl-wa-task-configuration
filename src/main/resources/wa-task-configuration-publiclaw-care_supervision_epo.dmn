@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_0yh1rk0" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.7.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_0yh1rk0" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.26.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
   <decision id="wa-task-configuration-publiclaw-care_supervision_epo" name="Task configuration DMN" camunda:historyTimeToLive="P30D">
     <informationRequirement id="InformationRequirement_1od0u7n">
       <requiredDecision href="#Decision_137edzy" />
@@ -544,7 +544,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1v6se2q">
-          <text>"reviewMessageAllocatedJudge","reviewResponseAllocatedJudge","reviewMessageHearingJudge","reviewResponseHearingJudge","reviewMessageHearingCentreAdmin","reviewResponseHearingCentreAdmin","reviewMessageCTSC","reviewResponseCTSC","reviewCorrespondence","chaseOutstandingOrder","reviewCorrespondenceHighCourt","reviewListingAction"</text>
+          <text>"reviewMessageAllocatedJudge","reviewResponseAllocatedJudge","reviewMessageHearingJudge","reviewResponseHearingJudge","reviewMessageHearingCentreAdmin","reviewResponseHearingCentreAdmin","reviewMessageCTSC","reviewResponseCTSC","reviewCorrespondence","chaseOutstandingOrder","reviewCorrespondenceHighCourt","reviewListingAction","queryManagementRespondToQuery"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1attt77">
           <text></text>
@@ -686,7 +686,7 @@ else "roleAssignmentId"</text>
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0uuvjqh">
-          <text>"reviewMessageCTSC","reviewResponseCTSC","reviewUrgentApplication","reviewStandardApplication","reviewStandardDirectionOrder","reviewOrderCMO","reviewFailedPayment","reviewCorrespondence","checkPlacementApplication","chaseOutstandingOrder","reviewSpecificAccessRequestCTSC"</text>
+          <text>"reviewMessageCTSC","reviewResponseCTSC","reviewUrgentApplication","reviewStandardApplication","reviewStandardDirectionOrder","reviewOrderCMO","reviewFailedPayment","reviewCorrespondence","checkPlacementApplication","chaseOutstandingOrder","reviewSpecificAccessRequestCTSC","queryManagementRespondToQuery"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1u9r6w0">
           <text></text>
@@ -1056,6 +1056,26 @@ else "JUDICIAL"</text>
           <text></text>
         </outputEntry>
       </rule>
+      <rule id="DecisionRule_0bkrsv0">
+        <inputEntry id="UnaryTests_1tr4f8f">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05kotc0">
+          <text>"queryManagementRespondToQuery"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01y4b0b">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1v0bcgz">
+          <text>"description"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1jexaly">
+          <text>"[Respond to a query](/case/PUBLICLAW/CARE_SUPERVISION_EPO/${[CASE_REFERENCE]}/trigger/queryManagementRespondQuery)"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0kr6vkz">
+          <text>true</text>
+        </outputEntry>
+      </rule>
       <rule id="DecisionRule_18r5w06">
         <description>all tasks have the default 500</description>
         <inputEntry id="UnaryTests_18mvv82">
@@ -1421,6 +1441,27 @@ else [5000])[1]</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1022klg">
           <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1b1czpi">
+        <description>Low, Medium, High based on priority date</description>
+        <inputEntry id="UnaryTests_0x6d5k2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0oqgjgj">
+          <text>"queryManagementRespondToQuery"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15bocnn">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0v2jb6r">
+          <text>"majorPriority"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0yhuej6">
+          <text>5000</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0gx1ecc">
+          <text>true</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1sumgf3">
